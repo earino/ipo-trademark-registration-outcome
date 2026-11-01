@@ -1,0 +1,149 @@
+{
+  "artifact_version": "2c1dade2913d0a8b643c89e628095a18e03223a6167beb9363316389486a544d",
+  "assets": {
+    "meta.json": {
+      "bytes": 1993,
+      "download": "https://github.com/earino/ipo-trademark-registration-outcome/releases/download/v2026.10/meta.json",
+      "hf_path": "meta.json",
+      "sha256": "caf2a4d916611470ca1f1535113acf179efa2ef71d497a88f4e79f2e5bcb1011"
+    },
+    "private-holdout.csv": {
+      "bytes": 21503483,
+      "download": "https://github.com/earino/ipo-trademark-registration-outcome/releases/download/v2026.10/private-holdout.csv",
+      "hf_path": "data/private-holdout.csv",
+      "sha256": "26cfc5a8a2131bac4d700ee4733a79eee6eae327dc7c6aa5ed93cf1a0589fa41"
+    },
+    "public-eval.csv": {
+      "bytes": 18142219,
+      "download": "https://github.com/earino/ipo-trademark-registration-outcome/releases/download/v2026.10/public-eval.csv",
+      "hf_path": "data/public-eval.csv",
+      "sha256": "54e06a89d7f565ba690f5abe0fd8cdce5a91c55aaa50738690f8efeee474c520"
+    },
+    "public-train.csv": {
+      "bytes": 20048573,
+      "download": "https://github.com/earino/ipo-trademark-registration-outcome/releases/download/v2026.10/public-train.csv",
+      "hf_path": "data/public-train.csv",
+      "sha256": "f4bb622df6e985ea3bd85d8e962a90022e029588bf56ae3a4d89721877a25a51"
+    },
+    "quality.json": {
+      "bytes": 41854,
+      "download": "https://github.com/earino/ipo-trademark-registration-outcome/releases/download/v2026.10/quality.json",
+      "hf_path": "quality.json",
+      "sha256": "efa5b4d3d9b68f07ba8cdffee484a9c6e51b80323851158786a01fdaef7d1bd6"
+    }
+  },
+  "baseline": {
+    "metrics": {
+      "Evaluation ROC AUC": 0.6224
+    },
+    "scope": "runner-contract baseline only; no agent loop, no holdout evaluation. Holdout stays sealed until the design is frozen."
+  },
+  "configs": [],
+  "dataset": "ipo-trademark-registration-outcome",
+  "domain": "Intellectual property administration",
+  "github_repository": "earino/ipo-trademark-registration-outcome",
+  "hf_repository": "earino/ipo-trademark-registration-outcome",
+  "licenses": {
+    "attribution": "Contains public sector information licensed under the Open Government Licence v3.0. Source: UK trade mark applications open data (Intellectual Property Office), opendatadomestic.zip snapshot of 2018-02-13.",
+    "citation": "Intellectual Property Office. UK trade mark applications open data (opendatadomestic.zip, snapshot 2018-02-13). https://www.gov.uk/government/publications/ipo-trade-mark-data-release . Licensed under the Open Government Licence v3.0. Derived dataset: UK trade mark application registration-outcome prediction task (not an Intellectual Property Office product).",
+    "code": "MIT",
+    "compilation_scope": "Our contribution - the eligibility frame (domestic applications with parseable filing dates in 2010-2016), the registered-by-snapshot label with per-cohort censoring, the right-anchored recovery of embedded-pipe rows and stripped-string-key deduplication, the derived feature columns, the filed-year cohort partition with boundary-straddling exclusions, and the packaging - is dedicated to the public domain under CC0-1.0. The dedication covers only our contribution: the underlying IPO trade mark data keeps its own designation and remains subject to the Open Government Licence v3.0, whose attribution condition carries through to every copy of the derived data. Nothing here relicenses the source or presents CC0 as the source's terms.",
+    "data_compilation": "CC0-1.0",
+    "source_data": "OGL-UK-3.0"
+  },
+  "limitations": [
+    "Derived research dataset, not an official IPO product; the IPO has not reviewed, authorised or endorsed it.",
+    "Retrospective, single-snapshot target: registration outcomes are resolved in the frozen 2018-02-13 snapshot; withdrawn/refused applications later re-filed are not tracked across applications.",
+    "The snapshot's owner and class values are current-vintage: they do not establish what was observable at each historical filing instant.",
+    "Applications unresolved in the snapshot are excluded by a disclosed rule; unresolved rows are counted, never labelled.",
+    "Registration is the majority outcome (84%); accuracy numbers flatter any model, so AUC and the paired references are the quoted scale.",
+    "The labeled holdout is downloadable by design; keep it outside every evaluated agent's workspace.",
+    "Source data is the IPO's open data under OGL 3.0 (attribution preserved); our compilation is dedicated CC0-1.0 and code MIT. OGL 3.0 imposes no same-licence condition on adaptations."
+  ],
+  "post": {
+    "paragraphs": [
+      "The UK Intellectual Property Office publishes its domestic trade mark register as one bulk open data release. The contribution here is not access: it is the frozen 2018-02-13 snapshot, the declaration that the prediction instant is the filing date, and the label - whether the application ever reaches a recorded Registered date in that snapshot. 319,436 applications across filing years 2010-2016, split by filing cohort.",
+      "Every shipped feature is fixed at filing: the mark text, its 45 Nice class indicators, category, mark type, series membership and size, the owner's country / region / postcode area, and the filing date. Owner names and hyperlinks are excluded by design; everything else ships exactly as published. Registration is the norm - 84% of applications register - so majority-class accuracy is high and the honest scale for skill is the AUC.",
+      "The release ships an illustrative stock baseline at eval AUC 0.6224, with the simple references beside it: mark type 0.5650, nice-class-count 0.5421, owner country 0.5191, calendar 0.4972. The baseline beats every reference, and an independent audit reproduced it exactly while confirming no tested single column, token or date rule recovered the outcome (best blind score: mark-text length, 0.5751).",
+      "The independent adversarial audit (2026-11-01) verified the five shipped files against both MANIFEST and SHA256SUMS, rebuilt all three splits byte-for-byte from the publisher snapshot, confirmed split disjointness and the 319,436-row census, and searched for the task publicly - no equivalent registration-outcome task release exists. It found one false sentence in our licence description - we wrongly asserted an OGL 3.0 same-licence condition on adaptations, which OGL 3.0 does not impose - and that was corrected before anything was made public."
+    ],
+    "title": "Will this trade mark register? A frozen-snapshot task over IPO bulk data"
+  },
+  "qualification": {
+    "gate_version": "1.5.0",
+    "result": "PASSED"
+  },
+  "record_sha256": "3188a5390afb183d3528e078a3ed11fcda1225e832dc27ef1b656b04aeb689c0",
+  "release_date": "2026-11-01",
+  "release_tag": "v2026.10",
+  "schema_version": 1,
+  "site_revision": 1,
+  "source": {
+    "name": "UK trade mark applications open data - opendatadomestic.zip, the frozen 2018-02-13 snapshot of the domestic register (Intellectual Property Office, United Kingdom)",
+    "url": "https://www.gov.uk/government/publications/ipo-trade-mark-data-release"
+  },
+  "splits": {
+    "eval": {
+      "positives": 81699,
+      "rows": 97274
+    },
+    "holdout": {
+      "positives": 99385,
+      "rows": 115172
+    },
+    "train": {
+      "positives": 92668,
+      "rows": 106990
+    }
+  },
+  "suitability": {
+    "artifact_version": "2c1dade2913d0a8b643c89e628095a18e03223a6167beb9363316389486a544d",
+    "corrections": [],
+    "cross_row_audit": {
+      "scope": "No cross-row exposure is declared and none is structurally available in the shipped columns: every feature is a filing-time attribute of the application itself (mark text, class booleans, category, type, series, owner fields, filing date), no history or aggregate feature crosses rows, tm_number is unique per row, and the label source columns are excluded from every shipped CSV. The panel-style reverse-history probes declared for panel-shaped candidates therefore do not apply; no donor-join audit has been run against this artifact. The isolation contract is the row-per-application grain itself; the shipped illustrative runner passes the whole eval feature table to the predictor, which does not create an exposure here but is also not an enforcement mechanism.",
+      "status": "untested"
+    },
+    "dataset": "ipo-trademark-registration-outcome",
+    "decision": "retain_restricted",
+    "evaluation_access": "isolated_rows",
+    "historical_availability": "unverified",
+    "limitations": [
+      "Single frozen vintage (2018-02-13 snapshot, sha256-pinned); the publisher revises in place and retains no historical vintages, so no historical operational-availability claim is possible",
+      "Training-label timing and full-row historical availability are unverified; the task is retrospective research only",
+      "Owner and class columns are snapshot-vintage: assignment can move ownership after filing and classes can be narrowed post-filing - a uniform-vintage limitation declared in quality.json, never an as-of claim",
+      "Censoring is outcome-observability conditioning recorded as a limitation: marks unresolved at the snapshot (21/172/809 per split) are excluded and counted, never labelled negative",
+      "The headroom finding's scope: row-level intervals only (no dependence cluster measurable from the shipped columns), one model configuration with no re-tuning, and two filing years of eval coverage; beating the measured rate references does not enumerate all simple rules and does not prove a causal signal",
+      "The holdout was never evaluated; no holdout figure exists and its first use must follow a frozen design"
+    ],
+    "release_tag": "v2026.10",
+    "reviewed_on": "2026-10-30",
+    "schema_version": 1,
+    "selection": "prediction_time",
+    "summary": "Retained for retrospective model-development research. Each row is one distinct trade mark application whose features are its own filing-time attributes as recorded in the single frozen 2018-02-13 IPO snapshot; the prediction instant is the filing event (event_time) and no point-in-time or operational claim is made. The publisher serves exactly one frozen vintage and no historical vintages, so training-label timing and full-row historical availability are unverified and none is claimed. Measured finding carried beside every figure: the stock runner baseline (eval AUC 0.6224, Brier 0.1318) exceeds every measured simple reference on the identical 97,274 eval rows - mark-type rate 0.5650 (+0.0574, CI95 [0.0533, 0.0605]), nice-class rate 0.5421 (+0.0803, [0.0748, 0.0862]), calendar-month rate 0.4972 (+0.1252, [0.1174, 0.1315]) - all paired row-level intervals excluding zero, with the advantage holding in both eval filing years at flat prevalence: demonstrated headroom over these references under this protocol, with its scope recorded (row-level intervals only - no dependence cluster is measurable from the shipped columns; one model configuration, no re-tuning; two filing years of eval coverage). Persistence is not applicable (every scored row is a new application).",
+    "supported_uses": [
+      "Retrospective research and method comparison on the pinned 2018-02-13 snapshot, predicting row-wise from the shipped filing-time columns",
+      "Agent evaluation with the labeled eval split as development/validation data and the holdout kept outside agent development until a design is frozen",
+      "Study of filing-cohort prevalence and of which filing-time attributes carry registration-outcome signal"
+    ],
+    "training_label_timing": "unverified",
+    "unsupported_uses": [
+      "Operational or live filing-time screening claims: no historical operational-availability evidence exists and none is claimed",
+      "Point-in-time historical reconstruction: the publisher serves one frozen snapshot; a later re-fetch is a different vintage, not what was knowable earlier",
+      "Quoting the model AUC (0.6224) without the reference comparison (mark-type 0.5650, nice-class 0.5421, calendar 0.4972, with the paired intervals) beside it",
+      "Treating the snapshot-vintage owner fields (country/region/postcode area) or class columns as as-of-filing facts: ownership can be assigned after filing and classes can be narrowed"
+    ],
+    "vintage": "current_snapshot"
+  },
+  "summary": "Research task: from what is fixed at filing - the mark text, Nice class coverage, category, type, series and owner geography - predict whether a UK domestic trade mark application reaches registration in the IPO's frozen 2018-02-13 open data snapshot.",
+  "task_type": "binary-classification",
+  "title": "UK trade mark registration outcome",
+  "urls": {
+    "catalog": "https://earino.github.io/dataset-factory-site/",
+    "github": "https://github.com/earino/ipo-trademark-registration-outcome",
+    "github_release": "https://github.com/earino/ipo-trademark-registration-outcome/releases/tag/v2026.10",
+    "huggingface": "https://huggingface.co/datasets/earino/ipo-trademark-registration-outcome",
+    "huggingface_version": "https://huggingface.co/datasets/earino/ipo-trademark-registration-outcome/tree/v2026.10",
+    "version": "https://earino.github.io/ipo-trademark-registration-outcome/versions/v2026.10/",
+    "website": "https://earino.github.io/ipo-trademark-registration-outcome/"
+  }
+}
