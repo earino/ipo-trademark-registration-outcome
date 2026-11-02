@@ -692,7 +692,7 @@
   "package_digest": null,
   "package_files": {
     ".dataset-site/LICENSE-MIT.txt": "200f782f6b8bc23b926ea774cbacb4147826b3b2b59200917d8dc5ec68159535",
-    ".dataset-site/build.py": "6e0c6e645cccd687bc044566ee791fe7c56a3ad2e5d4764e935a6601a1352139",
+    ".dataset-site/build.py": "4c1673a6f1f70c53b1782db237b4220506f1f65a33ecc9315d8c45c732223015",
     ".dataset-site/config.json": "24f9d6d2ee370c27886ed011a723374f669b72366cf285582ff1c0bf799a4f2d",
     ".dataset-site/editions/ipo-trademark-registration-outcome/v2026.10/1.json": "c91c455de026c9f5ce86d40d6a334c0101dc57e755ec5732f89f052c7c64e8d5",
     ".dataset-site/owner.json": "253130b806482a85e5d8b0a2743d94c5165c537b6a588e103834a0d9d1741f96",
